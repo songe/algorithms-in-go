@@ -2,10 +2,6 @@ package palindrome
 
 import "fmt"
 
-func FindLongest(s string) string {
-    return FindLongestQuadratic(s)
-}
-
 func FindLongestQuadratic(s string) string {
     if len(s) == 0 {
         return ""
