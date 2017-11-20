@@ -18,8 +18,10 @@ func test(f func(string) string, t *testing.T) {
         {"a", "a"},
         {"ab", "a"},
         {"abab", "aba"},
+        {"abba", "abba"},
         {"ababcbab", "babcbab"},
         {"abaaaaaa", "aaaaaa"},
+        {"abcdcbacac", "abcdcba"},
     }
     for _, c := range cases {
         actual := f(c.in)
