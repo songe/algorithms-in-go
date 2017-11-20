@@ -1,11 +1,15 @@
 package palindrome
 
+/**
+ * Find the longest palindrome in the given string
+ */
+
 func FindLongestQuadratic(s string) string {
     if len(s) == 0 {
         return ""
     }
 
-    s2 := addPaddings(s)
+    s2 := addPadding(s)
 
     // Find the longest palindrome around each pivot
     const EMPTY = 0
@@ -41,7 +45,7 @@ func FindLongestLinear(s string) string {
         return ""
     }
 
-    s2 := addPaddings(s)
+    s2 := addPadding(s)
     p := make([]int, len(s2))
 
     // Center & Right of the rightermost palindrome so far
@@ -102,14 +106,14 @@ func FindLongestLinear(s string) string {
         }
     }
 
-    return removePaddings(s2[c-longest:c+longest+1])
+    return removePadding(s2[c-longest:c+longest+1])
 }
 
 /**
- * Explode s to insert padding between each char
- * e.g. "aba" -> ".a.b.a.", "anna" -> ".a.n.n.a."
+ * Explode s to insert padding between each character and front & back
+ * e.g. "aba" -> " a b a ", "anna" -> " a n n a "
  */
-func addPaddings(s string) []rune {
+func addPadding(s string) []rune {
     s2 := make([]rune, len(s) * 2 + 1)
     i := 1
     for _, c := range s {
@@ -119,7 +123,7 @@ func addPaddings(s string) []rune {
     return s2
 }
 
-func removePaddings(s []rune) string {
+func removePadding(s []rune) string {
     s2 := make([]rune, len(s) / 2)
     for i,j := 1, 0; i < len(s); i,j = i+2, j+1 {
         s2[j] = s[i]
